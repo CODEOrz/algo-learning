@@ -1,0 +1,22 @@
+# 文件夹
+.happypack/
+.idea/
+.paralleUglify/
+dist/
+mock/
+node_modules/
+.vscode
+
+# 文件
+npm-debug.log
+test/report
+bin/jsdocConfig
+bin/docnsp
+bin/gerritJsdoc.sh
+bin/jsdocConfig.json
+doc/_book
+src/version.js
+karma-*
+.devrc
+.DS_Store
+.editorconfig
