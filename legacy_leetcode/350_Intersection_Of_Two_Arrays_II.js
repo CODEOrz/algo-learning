@@ -35,6 +35,6 @@ var intersect = function (nums1, nums2) {
   return resultArr
 }
 
-// 二分查找算法对于该问题不是最佳解答，使用Map统计方法会更好。
-
 export default intersect
+
+// 二分查找算法对于该问题不是最佳解答，使用Map统计方法会更好。

@@ -54,10 +54,6 @@ function toString(arr) {
   return restr
 }
 
-
-
-
-
 function bubbleSort(elements) {
   if (elements.length <= 1) return elements
   for (let outer = elements.length - 1; outer > 0; --outer) {
@@ -140,7 +136,6 @@ function mergeSort(elements) {
     let m = 0
     let n = 0
 
-
     for (let j = left_start; j < right_end; ++j) {
       if (lArray[m] <= rArray[n]) {
         elements[j] = lArray[m]
@@ -181,6 +176,8 @@ function quickSort(elements) {
   }
   return quickSort(lesser).concat(pivot, quickSort(greater))
 }
+
+
 
 
 let nums = new CArray(20)
