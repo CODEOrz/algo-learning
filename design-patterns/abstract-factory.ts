@@ -1,3 +1,4 @@
+// 许多框架和程序库会将它作为扩展和自定义其标准组件的一种方式。
 interface AbstractFactory {
   createProductA(): AbstractProductA
 

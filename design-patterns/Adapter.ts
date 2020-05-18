@@ -1,3 +1,4 @@
+// 基于一些遗留代码的系统常常会使用该模式。 在这种情况下， 适配器让遗留代码与现代的类得以相互合作。
 class Target {
   public request(): string {
     return 'Target: The default target\'s behavior.';

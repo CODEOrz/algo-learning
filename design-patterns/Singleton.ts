@@ -1,3 +1,5 @@
+// 许多开发者将单例模式视为一种反模式。 因此它在 TypeScript 代码中的使用频率正在逐步减少。
+
 class Singleton {
   private static instance: Singleton
   private constructor() {}

@@ -1,3 +1,4 @@
+// 生成器模式是 TypeScript 世界中的一个著名模式。 当你需要创建一个可能有许多配置选项的对象时， 该模式会特别有用。
 interface Builder {
   producePartA(): void;
   producePartB(): void;

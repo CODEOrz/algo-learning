@@ -1,7 +1,4 @@
-/**
- * The example class that has cloning ability. We'll see how the values of field
- * with different types will be cloned.
- */
+// TypeScript 的 Cloneable  （克隆） 接口就是立即可用的原型模式
 class Prototype {
   public primitive: any;
   public component!: object;
