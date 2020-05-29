@@ -40,39 +40,89 @@
 // }
 
 // 解法二: DP Table解法，涉及到字符串转换的，最好使用这种解法。
+// var minDistance = function (s1, s2) {
+//   const len_1 = s1.length
+//   const len_2 = s2.length
+
+//   let dp = new Array(len_1 + 1)
+//   for (let i = 0; i <= len_1; ++i) {
+//     dp[i] = new Array(len_2 + 1).fill(0)
+//   }
+
+//   //base case
+//   for (let i = 1; i <= len_1; ++i) {
+//     dp[i][0] = i
+//   }
+//   for (let i = 1; i <= len_2; ++i) {
+//     dp[0][i] = i
+//   }
+
+//   for (let i = 1; i <= len_1; ++i) {
+//     for (let j = 1; j <= len_2; ++j) {
+//       if (s1.charAt(i - 1) === s2.charAt(j - 1)) {
+//         dp[i][j] = dp[i - 1][j - 1] // EQUAL
+//       } else {
+//         dp[i][j] = Math.min(
+//           dp[i - 1][j] + 1, // DELETE
+//           dp[i][j - 1] + 1, // INSERT
+//           dp[i - 1][j - 1] + 1 // REPLACE
+//         )
+//       }
+//     }
+//   }
+//   return dp[len_1][len_2]
+// }
+
+// 可回溯路径的解法
 var minDistance = function (s1, s2) {
   const len_1 = s1.length
   const len_2 = s2.length
 
-  let dp = new Array(len_1 + 1)
+  let dp = []
   for (let i = 0; i <= len_1; ++i) {
-    dp[i] = new Array(len_2 + 1).fill(0)
+    dp[i] = []
+    for (let j = 0; j <= len_2; ++j) {
+      dp[i][j] = {
+        val: 0,
+        op: 'DELETE',
+      }
+    }
   }
 
   //base case
   for (let i = 1; i <= len_1; ++i) {
-    dp[i][0] = i
+    dp[i][0].val = i
   }
   for (let i = 1; i <= len_2; ++i) {
-    dp[0][i] = i
+    dp[0][i].val = i
   }
 
   for (let i = 1; i <= len_1; ++i) {
     for (let j = 1; j <= len_2; ++j) {
       if (s1.charAt(i - 1) === s2.charAt(j - 1)) {
-        dp[i][j] = dp[i - 1][j - 1] // EQUAL
+        dp[i][j].val = dp[i - 1][j - 1].val // EQUAL
+        dp[i][j].op = 'IGNORE' // EQUAL
       } else {
-        dp[i][j] = Math.min(
-          dp[i - 1][j] + 1, // DELETE
-          dp[i][j - 1] + 1, // INSERT
-          dp[i - 1][j - 1] + 1 // REPLACE
+        let min = Math.min(
+          dp[i - 1][j].val, // DELETE
+          dp[i][j - 1].val, // INSERT
+          dp[i - 1][j - 1].val // REPLACE
         )
+
+        let index = [
+          dp[i - 1][j].val,
+          dp[i][j - 1].val,
+          dp[i - 1][j - 1].val,
+        ].indexOf(min)
+        let arr = ['DELETE', 'INSERT', 'REPLACE']
+        dp[i][j].op = arr[index]
+        dp[i][j].val = 1 + min
       }
     }
   }
-  return dp[len_1][len_2]
-}
 
+  return dp[len_1][len_2].val
+}
 export default minDistance
 
 /*****************************************************************************************************************************************************
