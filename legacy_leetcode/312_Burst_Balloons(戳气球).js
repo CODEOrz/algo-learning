@@ -3,7 +3,7 @@
  *
  */
 var maxCoins = function (nums) {
-  // Define the 0 and 'n+1' "virtual balloon" with 1.
+  // Define the 0 and n+1 "virtual balloon" with 1.
   nums.push(1)
   nums.unshift(1)
   const len = nums.length
