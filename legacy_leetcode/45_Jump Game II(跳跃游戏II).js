@@ -16,12 +16,7 @@
  */
 var jump = function (nums) {
   function _findMaxRange(minRange, maxRange) {
-    let ranges = []
-    for (let i = minRange; i <= maxRange; ++i) {
-      ranges.push(i + nums[i])
-    }
-    const newMaxRange = Math.max(...ranges)
-    return newMaxRange
+     1
   }
 
   const n = nums.length
@@ -40,5 +35,20 @@ var jump = function (nums) {
 
   return ans
 }
+
+// 解法二： cpp, 时间复杂度与解法一相似，实际都需要计算所有元素对应的最远可达距离
+// int jump(vector<int>& nums) {
+//   int n = nums.size();
+//   int end = 0, farthest = 0;
+//   int jumps = 0;
+//   for (int i = 0; i < n - 1; i++) {
+//       farthest = max(nums[i] + i, farthest);
+//       if (end == i) {
+//           jumps++;
+//           end = farthest;
+//       }
+//   }
+//   return jumps;
+// }
 // @lc code=end
 
