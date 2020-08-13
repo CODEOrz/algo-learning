@@ -46,7 +46,6 @@ const strStr = (txt, pat) => {
           dp[j][c] = dp[X][c]
         }
       }
-      console.log(`X = ${X} , char = ${pat[j]}, next_X = ${dp[X][pat.charCodeAt(j)]}`)
       X = dp[X][pat.charCodeAt(j)] // 根据当前Pattern所在字符，决定影子状态的更改
     }
   }
