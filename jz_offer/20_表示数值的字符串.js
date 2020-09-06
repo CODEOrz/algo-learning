@@ -28,7 +28,6 @@ var isNumber = function (s) {
     }
   }
 
-  // s = s.replace(/\s+/g, '');
   s = s.split('')
   while (s[0] === ' ') {
     s.shift()
@@ -55,21 +54,3 @@ var isNumber = function (s) {
   return numeric && currIndex === s.length
 }
 
-
-
-
-
-
-// console.log(isNumber('+100') + ' true')
-// console.log(isNumber('5e2') + ' true')
-// console.log(isNumber('-123') + ' true')
-// console.log(isNumber('3.1416') + ' true')
-// console.log(isNumber('-1E-16') + ' true')
-// console.log(isNumber('0123') + ' true')
-// console.log(isNumber('  1  ') + ' true')
-
-// console.log(isNumber('12e') + ' false')
-console.log(isNumber('1a3.14') + ' false')
-console.log(isNumber('12e+5.4') + ' false')
-console.log(isNumber('1.2.3') + ' false')
-console.log(isNumber(". 1") + ' false')
