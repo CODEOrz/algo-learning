@@ -1,0 +1,7 @@
+#test-triangle {
+  width: 0;
+  height: 0;
+  border-width: 0 50px 60px;
+  border-color: blue green orange;
+  border-style: solid;
+}
