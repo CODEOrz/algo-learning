@@ -40,6 +40,3 @@ function observer(target) {
 }
 
 observer(data);
-
-console.log(data)
-console.log(data)
