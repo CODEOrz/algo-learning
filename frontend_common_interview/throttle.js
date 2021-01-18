@@ -1,23 +1,47 @@
-// fn 是需要执行的函数
-// wait 是时间间隔
-const throttle = (fn, wait = 50) => {
-  // 上一次执行 fn 的时间
-  let previous = 0
-  // 将 throttle 处理结果当作函数返回
-  return function (...args) {
-    // 获取当前时间，转换成时间戳，单位毫秒
-    let now = +new Date()
-    // 将当前时间和上一次执行函数的时间进行对比
-    // 大于等待时间就把 previous 设置为当前时间并执行函数 fn
-    if (now - previous > wait) {
-      previous = now
-      fn.apply(this, args)
+function throttle(func, wait, options) {
+    var timer, context, args
+    var previous = 0
+    if (!options) options = {}
+
+    var later = function () {
+        previous = options.leading === false ? 0 : new Date().getTime()
+        timer = null
+        func.apply(context, args)
+        if (!timer) {
+            context = args = null
+        }
     }
-  }
+
+    var throttled = function () {
+        var now = new Date().getTime()
+        if (!previous && options.leading === false) previous = now
+        var remaining = wait - (now - previous)
+        context = this
+        args = arguments
+
+        if (remaining <= 0 || remaining > wait) {
+            if (timer) {
+                clearTimeout(timer)
+                timer = null
+            }
+            previous = now
+            func.apply(context, args)
+            if (!timer) {
+                context = args = null
+            }
+        } else if (!timer && options.trailing !== false) {
+            timer = setTimeout(later, remaining)
+        }
+    }
+
+    throttled.cancel = function () {
+        clearTimeout(timer)
+        previous = 0
+        timer = null
+    }
+
+    return throttled
 }
 
-// DEMO
-// 执行 throttle 函数返回新函数
-const betterFn = throttle(() => console.log('fn 函数执行了'), 1000)
-// 每 10 毫秒执行一次 betterFn 函数，但是只有时间差大于 1000 时才会执行 fn
-setInterval(betterFn, 10)
+// const betterFn = throttle(() => console.log('fn 函数执行了'), 1000)
+// setInterval(betterFn, 10)

@@ -30,6 +30,29 @@ function New(func) {
   }
   return res;
 }
-var obj = New(A, 1, 2);
-// equals to
-var obj = new A(1, 2);
+
+// 第二种实现
+function New() {
+  var obj = new Object()
+  Constructor = [].shift.call(arguments)
+  obj.__proto__ = Constructor.prototype
+  var ret = Constructor.apply(obj, arguments)
+  return typeof ret === 'object' ? ret : obj
+}
+
+
+function Person(name) {
+  this.name = name;
+  if (typeof this.getName != "function") {
+      Person.prototype = {
+          constructor: Person,
+          getName: function () {
+              console.log(this.name);
+          }
+      }
+  }
+}
+
+var person1 = new Person('kevin');
+// 注释掉上面的代码，这句是可以执行的。
+person1.getName();
