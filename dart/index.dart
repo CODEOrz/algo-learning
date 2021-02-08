@@ -1,9 +1,16 @@
-class WannabeFunction {
-  call(String a, String b, String c) => '$a $b $c!';
-}
+ dynamic a;
+ Object b;
 
-main() {
-  var wf = new WannabeFunction();
-  var out = wf("Hi", "there,", "gang");
-  print('$out');
-}
+ main() {
+     a = "234";
+     b = "2345";
+     printLengths();
+ }   
+
+ printLengths() {
+     // no warning
+     print(a.length);
+     // warning:
+     // The getter 'length' is not defined for the class 'Object'
+     print(b.length);
+ }
