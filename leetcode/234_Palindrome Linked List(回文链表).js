@@ -51,5 +51,52 @@ var isPalindrome = function (head) {
   }
   return true
 }
+
+/** 
+ * 第2次解答 210209 
+ */
+const reverseLinkList = head => {
+    if (head === null) {
+        return null
+    }
+    let _prev = null
+    let _curr = head
+    let _next = null
+
+    while (!!_curr) {
+        _next = _curr.next
+        _curr.next = _prev
+        _prev = _curr
+        _curr = _next
+    }
+
+    return _prev
+}
+
+var isPalindrome = function (head) {
+    if (head === null) {
+        return true
+    }
+
+    let _slow = head
+    let _fast = head
+
+    while (!!_fast && !!_fast.next) {
+        _slow = _slow.next
+        _fast = _fast.next.next
+    }
+
+    let theOtherHalfPart = reverseLinkList(_slow)
+
+    while (!!theOtherHalfPart) {
+        if (theOtherHalfPart.val !== head.val) {
+            return false
+        }
+        theOtherHalfPart = theOtherHalfPart.next
+        head = head.next
+    }
+
+    return true
+}
 // @lc code=end
 
