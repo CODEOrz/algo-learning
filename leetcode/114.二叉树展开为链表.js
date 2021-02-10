@@ -4,8 +4,6 @@
  * [114] 二叉树展开为链表
  */
 
-const { curry } = require("lodash")
-
 // @lc code=start
 /**
  * Definition for a binary tree node.
@@ -84,20 +82,7 @@ const { curry } = require("lodash")
  */
 
 var flatten = function (root) {
-    let curr = root
-    while (!!curr) {
-        if (!!curr.left) {
-            let next = curr.left
-            let predecessor = next
-            while (!!predecessor.right) {
-                predecessor = predecessor.right
-            }
-            predecessor.right = curr.right
-            curr.left = null
-            curr.right = next
-        }
-        curr = curr.right
-    }
+    
 }
 
 // @lc code=end
