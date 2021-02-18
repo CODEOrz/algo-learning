@@ -82,15 +82,15 @@ var buildTree = function (preorder, inorder) {
 //     return node
 // }
 
-// var buildTree = function (preorder, inorder) {
-//     if (inorder.length === 0) {
-//         return null
-//     }
-//     const currVal = preorder[0]
-//     const node = new TreeNode(currVal)
-//     const indexInInorder = inorder.findIndex((i) => i === currVal)
-//     node.left = buildTree(preorder.slice(1, indexInInorder + 1), inorder.slice(0, indexInInorder))
-//     node.right = buildTree(preorder.slice(indexInInorder + 1), inorder.slice(indexInInorder + 1))
-//     return node
-// }
+var buildTree = function (preorder, inorder) {
+    if (inorder.length === 0) {
+        return null
+    }
+    const currVal = preorder[0]
+    const node = new TreeNode(currVal)
+    const indexInInorder = inorder.findIndex((i) => i === currVal)
+    node.left = buildTree(preorder.slice(1, indexInInorder + 1), inorder.slice(0, indexInInorder))
+    node.right = buildTree(preorder.slice(indexInInorder + 1), inorder.slice(indexInInorder + 1))
+    return node
+}
 // @lc code=end

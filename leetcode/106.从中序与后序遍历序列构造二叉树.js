@@ -21,7 +21,7 @@
 
 const buildTree = (inOrder, postOrder) => {
     const _buildTree = (inStart, inEnd, postStart, postEnd) => {
-        if (postStart > postEnd) {
+        if (inStart > inEnd) {
             return null
         }
 
@@ -29,7 +29,7 @@ const buildTree = (inOrder, postOrder) => {
         const currentIndexOfInOrder = indexMap.get(currentVal)
 
         const node = new TreeNode(currentVal)
-        if (postStart === postEnd) {
+        if (inStart === inEnd) {
             return node
         }
 
