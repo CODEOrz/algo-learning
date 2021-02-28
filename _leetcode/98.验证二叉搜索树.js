@@ -18,7 +18,25 @@
  * @return {boolean}
  */
 var isValidBST = function (root) {
-    
-};
-// @lc code=end
+    let _prev = -Infinity
+    const stack = []
 
+    while (!!root || stack.length > 0) {
+        while (!!root) {
+            stack.push(root)
+            root = root.left
+        }
+
+        const curr = stack.pop()
+        if (curr.val <= _prev) {
+            return false
+        } else {
+            _prev = curr.val
+        }
+
+        root = curr.right
+    }
+
+    return true
+}
+// @lc code=end
