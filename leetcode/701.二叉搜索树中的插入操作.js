@@ -20,23 +20,65 @@
  */
 
 function TreeNode(val, left, right) {
-  this.val = (val === undefined ? 0 : val)
-  this.left = (left === undefined ? null : left)
-  this.right = (right === undefined ? null : right)
+    this.val = val === undefined ? 0 : val
+    this.left = left === undefined ? null : left
+    this.right = right === undefined ? null : right
 }
 
 var insertIntoBST = function (root, val) {
-  if (root === null) {
-    return new TreeNode(val, null, null)
-  }
+    if (root === null) {
+        return new TreeNode(val, null, null)
+    }
 
-  if (val > root.val) {
-    root.right = insertIntoBST(root.right, val)
-  } else {
-    root.left = insertIntoBST(root.left, val)
-  }
+    if (val > root.val) {
+        root.right = insertIntoBST(root.right, val)
+    } else {
+        root.left = insertIntoBST(root.left, val)
+    }
 
-  return root
+    return root
 }
-// @lc code=end
 
+/**
+ * 解法B：210302
+ */
+// var insertIntoBST = function (root, val) {
+//     function predecessor(root) {
+//         let _root = root
+//         while (!!_root.right) {
+//             _root = _root.right
+//         }
+//         return _root
+//     }
+
+//     function successor() {
+//         let _root = root
+//         while (!!_root.left) {
+//             _root = _root.left
+//         }
+//         return _root
+//     }
+
+//     if (!root) {
+//         return new TreeNode(val)
+//     }
+
+//     if (root.val > val) {
+//         const _predecessor = predecessor(root)
+//         if (_predecessor.val < val) {
+//             _predecessor.right = new TreeNode(val)
+//         } else {
+//             root.left = insertIntoBST(root.left, val)
+//         }
+//     } else {
+//         const _successor = successor(root)
+//         if (_successor.val > val) {
+//             _successor.left = new TreeNode(val)
+//         } else {
+//             root.right = insertIntoBST(root.right, val)
+//         }
+//     }
+
+//     return root
+// }
+// @lc code=end
