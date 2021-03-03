@@ -4,6 +4,7 @@ function Promise(fn) {
     const resolve = (value) => {
         setTimeout(() => {
             this.data = value
+            console.log('a-' + value)
             this.callbackFunctions.forEach((callback) => callback(value))
         })
     }
@@ -11,12 +12,13 @@ function Promise(fn) {
     fn(resolve)
 }
 
-Promise.prototype.then = function () {
+Promise.prototype.then = function (onResolved) {
     return new Promise((resolve) => {
+        console.log('b')
         this.callbackFunctions.push(() => {
             const res = onResolved(this.data)
             if (res instanceof Promise) {
-                res.then(resolve)
+                res.then((v) => resolve(v + '-outer'))
             } else {
                 resolve(res)
             }
@@ -29,14 +31,16 @@ Promise.prototype.then = function () {
 new Promise((resolve) => {
     setTimeout(() => {
         resolve(1)
-    }, 500)
+    }, 1000)
 })
     .then((res) => {
         console.log(res)
         return new Promise((resolve) => {
+            console.log('c')
             setTimeout(() => {
+                console.log('d')
                 resolve(2)
-            }, 500)
+            }, 1000)
         })
     })
     .then(console.log)
