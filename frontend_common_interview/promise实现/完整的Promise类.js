@@ -3,6 +3,7 @@ var Promise = (function () {
         if (typeof resolver !== 'function') {
             throw new TypeError('Promise resolver ' + resolver + ' is not a function')
         }
+
         if (!(this instanceof Promise)) return new Promise(resolver)
 
         var self = this
